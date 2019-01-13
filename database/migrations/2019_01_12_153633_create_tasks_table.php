@@ -19,7 +19,7 @@ class CreateTasksTable extends Migration
             $table->timestamp('start_time');
             $table->enum('priority', ['low', 'medium', 'high', 'default']);
             $table->unsignedInteger('card_id');
-            $table->foreign('card_id')->references('id')->on('cards'); 
+            $table->foreign('card_id')->references('id')->on('cards')->onDelete('cascade'); 
             $table->timestamps();
         });
     }
