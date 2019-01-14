@@ -20,9 +20,10 @@ class BoardController extends Controller
         $this->middleware(function ($request, $next) {
 
             $this->user = auth()->user();
-
+            
             return $next($request);
         });
+        $this->middleware('auth');
 
     }
     public function index()

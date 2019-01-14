@@ -19,3 +19,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('board', 'BoardController')->except(['create', 'edit']);
+Route::resource('board/{board_id}/card', 'CardController')->except(['create', 'edit', 'show']);
+
