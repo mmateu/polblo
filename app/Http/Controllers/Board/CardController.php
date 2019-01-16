@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Board;
 
 use App\Card;
 use Illuminate\Http\Request;
 use App\Board;
 use App\Http\Resources\Card as CardResource;
+use App\Http\Controllers\Controller; 
 
 class CardController extends Controller
 {
 
 
-    protected $user;
+    private $user;
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
@@ -28,10 +29,10 @@ class CardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $board_id)
+    public function index($board_id)
     {   
         
-        $board = \App\Board::where('id',$board_id )->first();
+        $board = \App\Board::findOrFail($board_id);
         return new CardResource($board->cards()->get());
     }
     /**
@@ -42,21 +43,20 @@ class CardController extends Controller
      */
     public function store($board_id , Request $request)
     {
-
-        
+   
         $card =  new Card();
 
         $card->name = $request->input('name');
         $card->board_id = $request->input('board_id');
-        
-        if(\App\Card::where('name',$card->name)->
-                      where('board_id', $board_id )->first() !=  null )
-        {
+       
+        if($card->isThereCardWithSameNamePresentInBoard())
+        {     
             return response()->json("['errors' => 'You have already a card with the same name in this board!']", 400);
-        }
-        if($card->save()) {
-            return new CardResource(\App\Card::all()->where('id',$card->id));
-        } 
+        }  
+        $card->save();
+
+        return new CardResource(collect([$card]));
+         
     }
     
     /**
@@ -68,13 +68,13 @@ class CardController extends Controller
      */
     public function update($board_id,Request $request, Card $card)
     {
-        
-        $cardResource =  \App\Card::where('id',$card->id)->first();
+
+        $cardResource =  \App\Card::findOrFail($card->id);
         $cardResource->name = $request->input('name') == null ? $card->name : $request->input('name');
 
-        if($cardResource->save()) {
-            return new CardResource(collect([$cardResource]));
-        } 
+        $cardResource->update();
+        return new CardResource(collect([$cardResource]));
+         
     }
 
     /**
