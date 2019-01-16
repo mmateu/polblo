@@ -4,7 +4,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Card::class, function (Faker $faker) {
     return [
-        "name" => array_random([$faker->sentence]),
+        "name" => 'Card '.array_random([$faker->sentence]),
         "board_id" => \App\Board::inRandomOrder()->first()->id
     ];
 });
