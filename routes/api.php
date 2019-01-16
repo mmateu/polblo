@@ -17,4 +17,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::resource('board', 'BoardController')->except(['create', 'edit']);
-Route::resource('board/{board_id}/card', 'CardController')->except(['create', 'edit']);
+Route::resource('board.card', 'Board\CardController')->except(['create', 'edit']);
