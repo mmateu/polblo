@@ -16,7 +16,7 @@ class CreateTasksTable extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->timestamp('start_time');
+            $table->dateTime('start_time');
             $table->enum('priority', ['low', 'medium', 'high', 'default']);
             $table->unsignedInteger('card_id');
             $table->foreign('card_id')->references('id')->on('cards')->onDelete('cascade'); 
