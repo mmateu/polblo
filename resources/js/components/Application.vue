@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class='vue'>
         <tab-boards >
             v-bind:is="currentTabComponent"
             class="tab"
@@ -11,7 +11,7 @@
 <script>
     import tabBoardsVue from './tabBoards.vue';
     import taskCardsVue from './taskCards.vue';
-    
+
 export default {
     
     data: function(){

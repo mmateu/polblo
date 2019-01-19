@@ -23,6 +23,8 @@ window.Vue = require('vue');
 Vue.component('tab-boards',require('./components/tabBoards.vue').default);
 Vue.component('task-cards',require('./components/taskCards.vue').default);
 Vue.component('application-component',require('./components/Application.vue').default);
+Vue.component('tasks-list', require('./components/Tasks.vue').default); 
+Vue.component('add-task', require('./components/AddTask.vue').default); 
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

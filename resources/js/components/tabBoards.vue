@@ -1,16 +1,16 @@
 <template>
   <div>
-      <ul class="tablist">
-        <li class="tab"
-          v-for="board in boards"
-          v-bind:key="board.id"
-          v-bind:name="board.name"
-          v-bind:class="{ selected: board === selectedBoard}"
-					v-on:click="selectBoard(board)"
-        >
-          <a> {{ board.name }} </a>
-        </li>
-      </ul>
+        <ul class="tablist" >
+          <li class="tab"
+            v-for="board in boards"
+            v-bind:key="board.id"
+            v-bind:name="board.name"
+            v-bind:class="{ selected: board === selectedBoard}"
+            v-on:click="selectBoard(board)"
+          >
+            <a> {{ board.name }} </a>
+          </li>
+        </ul>
     </div>
 </template>
 
@@ -35,7 +35,7 @@ export default {
       .catch(e => {
         this.errors.push(e)
         })
-      
+        
   },
   computed: {
     allTabs: function(){
@@ -45,7 +45,7 @@ export default {
     },
     currentTabComponent: function () {
       return 'tab-' + this.currentTab.toLowerCase()
-    }
+    }, 
   }, 
   methods:{
     selectBoard: function(board) {
@@ -68,6 +68,9 @@ border: none;
 }
 .tablist li.tab.selected a{
   background-color: rgb(193, 83, 184);
+  border-width: 2px;
+  border-color: firebrick;
+  border-collapse: collapse;
 }
 .tablist  li{
   float:left;
