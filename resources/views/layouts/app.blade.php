@@ -21,7 +21,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-info mb-2">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -72,9 +72,13 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-6">
             @yield('content')
         </main>
     </div>
+
+    <script src="{{ asset('js/manifest.js')}}"></script>
+    <script src="{{ asset('js/vendor.js')}}"></script> 
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
