@@ -9,12 +9,14 @@ use App\Task;
 
 class TaskController extends Controller
 {
-    public function index($board, $card)
-    {
-        $board = \App\Board::findOrFail($board);
-        $cards = $board->cards()->get()->first();
-        $tasks = $cards->tasks()->get();
-
+    public function index(Request $request)
+    {   
+        $path = explode("/", $request->path());  
+        $board_id = $path[1]; 
+        $card_id = $path[3];
+        $card = \App\Card::where('board_id', $board_id )->where('id', $card_id)->first();
+        $tasks = $card->tasks()->get();
+        
         return new TaskResource([$tasks]);
     }
 
