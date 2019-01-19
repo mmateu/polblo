@@ -3,7 +3,7 @@
     @auth
         <application-component>
             
-        <application-component>
+        </application-component>
     @endauth
         
 
