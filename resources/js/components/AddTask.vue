@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card">
+        <div class="card" id="addTask">
             <label for="taskName">+</label>
             <form @submit="formSubmit" method="post">
                 
@@ -55,5 +55,10 @@ export default {
 <style>
 #taskName{
     width: 100%;
+    
+}
+#addTask{
+    border: none;
+    
 }
 </style>
