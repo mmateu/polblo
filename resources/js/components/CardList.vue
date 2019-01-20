@@ -62,7 +62,7 @@ export default {
 }
 </script>
 <style>
-.unLoaded {
+.unLoaded *{
     display: none;
 }
 </style>

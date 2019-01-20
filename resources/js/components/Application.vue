@@ -4,13 +4,13 @@
             v-bind:is="currentTabComponent"
             class="tab"
         </tab-boards>
-        <task-cards :board_id="board_id"  ></task-cards>
+        <card-list :board_id="board_id"  ></card-list>
     </div>
     
 </template>
 <script>
     import tabBoardsVue from './tabBoards.vue';
-    import taskCardsVue from './taskCards.vue';
+    import cardListVue from './CardList.vue';
 
 export default {
     
@@ -21,7 +21,7 @@ export default {
     },
     components: {
         'tab-boards': tabBoardsVue,
-        'task-cards': taskCardsVue
+        'card-list': cardListVue
     },
     created: 
         function(){
