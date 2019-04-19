@@ -1,6 +1,8 @@
 <template>
     <div class='vue'>
-        <tab-boards >
+        <board-add></board-add> 
+        <card-add></card-add>
+        <tab-boards>
             v-bind:is="currentTabComponent"
             class="tab"
         </tab-boards>
@@ -11,6 +13,9 @@
 <script>
     import tabBoardsVue from './tabBoards.vue';
     import cardListVue from './CardList.vue';
+    import BoardAddVue from './BoardAdd.vue';
+    import CardAddVue from './CardAdd.vue';
+    
 
 export default {
     
@@ -21,7 +26,9 @@ export default {
     },
     components: {
         'tab-boards': tabBoardsVue,
-        'card-list': cardListVue
+        'card-list': cardListVue,
+        'board-add':BoardAddVue,
+        'card-add':CardAddVue
     },
     created: 
         function(){

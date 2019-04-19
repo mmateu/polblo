@@ -43,12 +43,15 @@ export default {
     }, 
     mounted: function(){
         this.$eventHub.$on('taskAdded', this.updateTasksAfterPost);
-        this.$eventHub.$on('deleteTask', this.deleteTask);
+        this.$eventHub.$on('taskDeleted', this.deleteTask);
+        this.$eventHub.$on('taskUpdated', this.updateTaskAfterPatch);
+       
     }
     ,
     beforeDestroy: function(){
         this.$eventHub.$off('taskAdded');
-        this.$eventHub.$off('deleteTask');
+        this.$eventHub.$off('taskDeleted');
+        this.$eventHub.$off('updateTaskAfterPatch');
     },
     methods: {
         updateTasksAfterPost: function(task){
@@ -58,10 +61,20 @@ export default {
         },
         deleteTask: function(task){
             const index = this.tasks.map((e) => e.id).indexOf(task);
-            if( index != -1){
+            if( index !== -1){
                 this.tasks.splice(index,1);
             }
                 
+        }, 
+        updateTaskAfterPatch: function(response_task){
+            console.log(this.tasks);
+            const index = this.tasks.map((e) => e.id).indexOf(response_task.id);
+            if(index !== -1){
+                this.tasks[index].name = response_task.name;
+                this.tasks[index].priority = response_task.priority;
+                this.tasks[index].start_time = response_task.start_time 
+            }
+            
         }
     }
 

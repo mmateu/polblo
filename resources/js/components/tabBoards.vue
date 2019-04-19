@@ -15,17 +15,16 @@
 </template>
 
 <script>
-//import {bus} from '../bus.js'
 export default {
 
   data: function () {
   	return {
       boards: [{}],
-      tabs: [],
       selectedBoard: null,
       currentTab: ''
     }
   },
+
   mounted() {
       
       axios.get(`http://polblo.local/board`)
@@ -36,6 +35,9 @@ export default {
         this.errors.push(e)
         })
         
+  },
+  created(){
+    this.$eventHub.$on('attemptToAddBoard', this.addBoard);
   },
   computed: {
     allTabs: function(){
@@ -52,6 +54,23 @@ export default {
       this.selectedBoard = board;
 
       this.$eventHub.$emit('changeSelectedBoards', this.selectedBoard.id);
+    }, 
+    addBoard: function(board){
+     
+          axios.post('board', {
+                name: board.name,
+                user_id: board.user_id
+          })
+          .then(response => {
+              if( response.status === 200){
+                  this.$eventHub.$emit('boardAdded', response.data['data'][0]);
+                  this.boards.push(response.data['data'][0]);
+              }
+      
+          })
+          .catch(e => {
+              this.errors.push(e)
+          }); 
     }
   }
 
@@ -67,9 +86,9 @@ margin:0;
 border: none;
 }
 .tablist li.tab.selected a{
-  background-color: rgb(193, 83, 184);
-  border-width: 2px;
-  border-color: firebrick;
+  background-color: rgb(255, 223, 176);
+  border-width: 0.5px;
+  border-color: rgb(247, 220, 180);
   border-collapse: collapse;
 }
 .tablist  li{
@@ -80,15 +99,15 @@ border: none;
   display:block;
 padding:0 1em;
 text-decoration:none;
-border:0.06em solid #000;
+border:0.06em solid rgb(247, 220, 180);
 border-bottom:0;
 color:#000;
-background-color:rgb(108, 178, 235);
+background-color:rgb(255, 242, 225);
 border-top-right-radius:0.50em;
 border-top-left-radius:0.50em;
 }
 .tablist li a:hover {
-background:rgb(83, 193, 226);
+background:rgb(250, 222, 190);
 color :#fff;
 text-decoration:none;
 }

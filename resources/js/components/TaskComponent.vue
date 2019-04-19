@@ -2,21 +2,21 @@
     <div>
       <div class="card-body task">
                 <div class="grid-container">
-                    <div class="grid-item">
-                        3
-                    </div>
-                    <div class="grid-item">1</div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
                     <div class="grid-item delete-task">
                         <delete-task :task-api-identyfier="taskApiIdentyfier"></delete-task>
                     </div>
                     <div class="grid-item task-name">
                         {{thisTask.name}}
                     </div>
-                    <div class="grid-item">4</div>
-                    <div class="grid-item">5</div>
-                    <div class="grid-item">6</div>
-                    <div class="grid-item">7</div>
-                    <div class="grid-item">8</div>        
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item update-task">
+                        <update-task :task-api-identyfier="taskApiIdentyfier" v-bind="thisTask"></update-task>
+                    </div>        
                 </div>
                  
             </div>
@@ -63,6 +63,10 @@ export default {
     text-align:left;
 }
 .grid-item.delete-task{
+    text-align: right;
+}
+.grid-item.update-task{
+    align-items: right;
     text-align: right;
 }
 </style>

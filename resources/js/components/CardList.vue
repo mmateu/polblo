@@ -22,9 +22,11 @@
 </template>
 <script>
 import tasks from './Tasks.vue';
+import CardComponentVue from './CardComponent.vue';
 export default {
     components:{
-        'task-list': tasks
+        'task-list': tasks,
+        'card-component': CardComponentVue
     },
     props: ['board_id'],
     data: function(){
@@ -37,6 +39,9 @@ export default {
         hideUnloaded: function(){
             return this.board_id === 0;
         }
+    },
+    created: function(){
+        this.$eventHub.$on('attemptToAddCard', this.addCard);
     },
     watch: {
         board_id :{
@@ -54,9 +59,22 @@ export default {
         }   
     },
     methods: {
-        reloadCards: function(){
-           
-        }
+       addCard: function(card){
+           axios.post('board/'+this.board_id+"/card", {
+                name: card.name,
+                board_id: card.board_id
+          })
+          .then(response => {
+              if( response.status === 200){
+                  this.$eventHub.$emit('cardAdded', response.data['data'][0]);
+                  this.cards.push(response.data['data'][0]);
+              }
+      
+          })
+          .catch(e => {
+              this.errors.push(e)
+          }); 
+       }
     },
 
 }

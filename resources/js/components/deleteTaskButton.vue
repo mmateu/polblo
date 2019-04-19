@@ -1,8 +1,6 @@
 <template>
     <div>
-        <button id="deleteTask" @click="deleteTask">
-            x
-        </button>
+        <button id="deleteTask" class="taskController" @click="deleteTask">x</button>
     </div>
 </template>
 <script>
@@ -27,22 +25,27 @@ export default {
                 this.errors.push(e)
             });
 
-            this.$eventHub.$emit('deleteTask', this.taskApiIdentyfier.task_id);
+            this.$eventHub.$emit('taskDeleted', this.taskApiIdentyfier.task_id);
         }
-    }
+    }, 
+    /* mounted: function(){
+        console.log(this.taskApiIdentyfier);
+        console.log("mounted");
+    } */
 
 }
 </script>
 <style>
 #deleteTask{
     border: none;
-    
+    align-items: right;    
 }
 #deleteTask:hover{
        -webkit-box-shadow:inset 0px 0px 0px 1px gainsboro ;
     -moz-box-shadow:inset 0px 0px 0px 1px gainsboro;
     box-shadow:inset 0px 0px 0px 1px gainsboro;
-    background: antiquewhite
+    background: antiquewhite;
+
 }
 </style>
 

@@ -19,6 +19,12 @@ class TaskController extends Controller
         
         return new TaskResource([$tasks]);
     }
+    public function show($board, $card, $task)
+    {   
+        $taskR = \App\Task::find($task);
+        return new TaskResource([$taskR]);
+    }
+
 
     public function store($board_id, $card_id, Request $request)
     {

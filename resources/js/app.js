@@ -27,6 +27,11 @@ Vue.component('tasks-list', require('./components/Tasks.vue').default);
 Vue.component('add-task', require('./components/AddTask.vue').default); 
 Vue.component('delete-task', require('./components/deleteTaskButton.vue').default); 
 Vue.component('task-component', require('./components/TaskComponent.vue').default);
+Vue.component('update-task', require('./components/UpdateTaskButton.vue').default); 
+Vue.component('card-component', require('./components/CardComponent.vue').default);
+Vue.component('card-add', require('./components/CardAdd.vue').default);
+Vue.component('board-add', require('./components/BoardAdd.vue').default);
+
 
 
 /**

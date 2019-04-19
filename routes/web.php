@@ -1,5 +1,7 @@
 <?php
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,5 +22,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('board', 'BoardController')->except(['create', 'edit']);
 Route::resource('board.card', 'Board\CardController')->except(['create', 'edit', 'show']);
-Route::resource('board.card.task', 'Board\Card\TaskController')->except(['create', 'edit', 'show']);
+Route::resource('board.card.task', 'Board\Card\TaskController')->except(['create', 'edit']);
+Route::get("user", 'GetAuthUser');
 

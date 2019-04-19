@@ -21,7 +21,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-sm navbar-fixed-top navbar-dark bg-info mb-2">
+        <nav class="navbar navbar-expand-sm navbar-fixed-top mb-2" id="mainNavbar">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}

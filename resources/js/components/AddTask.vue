@@ -2,9 +2,10 @@
     <div>
         <div class="card" id="addTask">
             <label for="taskName">+</label>
-            <form @submit="formSubmit" method="post">
+            <form @submit="formSubmit">
                 
                 <input  type="text" 
+                        required
                         placeholder="Dodaj nowe zadanie" 
                         name="taskName" 
                         id="taskName"
@@ -58,7 +59,8 @@ export default {
     
 }
 #addTask{
-    border: none;
+    border: solid 0.5px;
+    border-color: mistyrose;
     
 }
 </style>
