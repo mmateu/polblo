@@ -47,7 +47,7 @@ export default {
         board_id :{
            immediate: true,
            handler(val){
-                axios.get("http://polblo.local/board/"+val+"/card")
+                axios.get("http://localhost:8000/board/"+val+"/card")
                 .then(response => {
                 this.cards = response.data['data'];
                  })

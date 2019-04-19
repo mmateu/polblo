@@ -31,7 +31,7 @@ export default {
            immediate: true,
            
            handler(val){
-                 axios.get("http://polblo.local/board/"+val.board_id+"/card/"+val.card_id+"/task/")
+                 axios.get("http://localhost:8000/board/"+val.board_id+"/card/"+val.card_id+"/task/")
                 .then(response => {
                 this.tasks = response.data['data'][0];
                  })

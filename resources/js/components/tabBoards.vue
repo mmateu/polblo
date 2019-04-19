@@ -27,7 +27,7 @@ export default {
 
   mounted() {
       
-      axios.get(`http://polblo.local/board`)
+      axios.get(`http://localhost:8000/board`)
       .then(response => {
         this.boards = response.data['data'];
       })
